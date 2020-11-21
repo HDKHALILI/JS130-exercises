@@ -14,7 +14,7 @@ function myBind(context, func) {
   return (...args) =>{
     // we pass args incase the func takes argument
     // so we need to capure it
-    func.call(context, args);
+    return func.apply(context, args);
   }
 }
 
