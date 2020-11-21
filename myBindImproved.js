@@ -17,3 +17,9 @@ function myBind(context, func) {
     return func.apply(context, allArgs);
   }
 }
+
+function myBind2(context, func, ...args) {
+  return (...restArgs) => {
+    return func.call(context, ...args, ...restArgs);
+  }
+}
