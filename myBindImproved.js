@@ -11,8 +11,8 @@ function myBind(context, func) {
   let partialArgs = Array.from(arguments).slice(2);
 
   return function() {
-    let remainingArgs = Array.from(arguments).slice();
-    let allArgs = partialArgs.concat(remainingArgs);
+    let currentArgs = Array.from(arguments).slice();
+    let allArgs = partialArgs.concat(currentArgs);
 
     return func.apply(context, allArgs);
   }
@@ -23,3 +23,15 @@ function myBind2(context, func, ...args) {
     return func.call(context, ...args, ...restArgs);
   }
 }
+
+function addNumbers(a, b) {
+  return a + b;
+}
+
+const addFive = myBind(null, addNumbers, 5);
+
+console.log(addFive(10)); // 15
+
+const addTen = myBind2(null, addNumbers, 10);
+
+console.log(addTen(100)); // 110;
