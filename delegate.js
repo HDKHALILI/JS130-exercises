@@ -14,6 +14,11 @@ function delegate(context, methodName) {
   }
 }
 
+// using arrow function and the rest operator
+const delegate2 = (context, methodName, ...args) => {
+  return () => context[methodName].call(context, ...args);
+};
+
 let foo = {
   name: 'test',
   bar: function(greeting) {
@@ -22,7 +27,7 @@ let foo = {
 };
 
 let baz = {
-  qux: delegate(foo, 'bar', 'hello'),
+  qux: delegate2(foo, 'bar', 'hello'),
 };
 
 baz.qux();   // logs 'hello test';
