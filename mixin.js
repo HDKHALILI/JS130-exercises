@@ -17,9 +17,7 @@ function delegate(callingObject, methodOwner, methodName) {
 function extend(object, mixin) {
   const methodNames = Object.keys(mixin);
   methodNames.forEach((name) => {
-    object[name] = function(...args) {
-      mixin[name].call(object, ...args);
-    }
+    object[name] = delegate(object, mixin, name);
   })
 
   return object;
