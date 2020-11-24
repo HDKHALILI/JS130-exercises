@@ -64,7 +64,7 @@ const Account = {
       }
     }
 
-    this.displayName = anonymise(16);
+    this.displayName = anonymise();
 
     this.reanonymise = function(password) {
       if (validPassword(password)) {
@@ -79,8 +79,6 @@ const Account = {
   }
 
 }
-
-console.log(Account.init);
 
 let fooBar = Object.create(Account).init('foo@bar.com', '123456', 'foo', 'bar');
 console.log(fooBar.firstName);                     // returns the firstName function
@@ -102,5 +100,5 @@ console.log(fooBar.email('abc'));                  // logs 'Invalid Password'
 
 // The problem with this solution is that each object will have all the method
 // as own property which is not memory efficient.
-console.log("---------------");
+console.log("has own property ---------------");
 console.log(fooBar.hasOwnProperty('firstName')); // true
