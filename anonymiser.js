@@ -100,5 +100,7 @@ let bazQux = Object.create(Account).init('baz@qux.com', '123456', 'baz', 'qux');
 console.log(fooBar.firstName('abc'));              // logs 'Invalid Password'
 console.log(fooBar.email('abc'));                  // logs 'Invalid Password'
 
+// The problem with this solution is that each object will have all the method
+// as own property which is not memory efficient.
 console.log("---------------");
 console.log(fooBar.hasOwnProperty('firstName')); // true
